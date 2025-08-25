@@ -12,7 +12,7 @@
 <link rel="preload" as="audio" href="assets/audio/4p_climate_100min.mp3">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-<title>VibeVoice — Demos with Sync</title>
+<title>VibeVoice</title>
 <style>
   :root {
     --bg:#ffffff;
@@ -218,6 +218,16 @@ The model can synthesize speech up to 90 minutes long with up to 4 distinct spea
 
   <section class="page" id="demo2">
     <h2>Long Conversational Speech</h2>
+
+    <div class="case" data-key="demo2-a" data-json="assets/text/4p_climate_45min_gt_timestamp.json">
+      <!-- <h3>Case A</h3> -->
+      <div class="sync-block">
+        <audio id="audio-demo2-a" controls preload="metadata">
+          <source src="assets/audio/4p_climate_45min.mp3" type="audio/mpeg">
+        </audio>
+        <div class="transcript" id="trans-demo2-a"></div>
+      </div>
+    </div>
 
     <div class="case" data-key="demo2-a" data-json="assets/text/4p_climate_100min_gt_timestamp.json">
       <!-- <h3>Case A</h3> -->
