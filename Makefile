@@ -28,7 +28,8 @@ prepare:
 download:
 	mkdir -p models
 	HF_ENDPOINT=https://hf-mirror.com hf download --local-dir ./models/WestZhang/VibeVoice-Large-pt WestZhang/VibeVoice-Large-pt
-	HF_ENDPOINT=https://hf-mirror.com hf download --local-dir ./models/microsoft/VibeVoice-1.5B microsoft/VibeVoice-1.5B
+	echo 经测试，1.5b 速度并没有快很多，瓶颈应该不在这里
+	echo HF_ENDPOINT=https://hf-mirror.com hf download --local-dir ./models/microsoft/VibeVoice-1.5B microsoft/VibeVoice-1.5B
 
 dev: sync-to-gpu
 	ssh -t $(REMOTE) "cd $(REMOTE_PATH) && \
