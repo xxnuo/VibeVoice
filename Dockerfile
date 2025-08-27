@@ -36,7 +36,7 @@ COPY pyproject.toml /app/pyproject.toml
 COPY .python-version /app/.python-version
 
 RUN --mount=type=cache,target=/root/.cache/pip \
-    pip3 install -e .
+    pip3 install -e . -i http://lzc-pod-aphkhy.lan:10608/simple --trusted-host lzc-pod-aphkhy.lan
 
 COPY demo /app/demo
 
