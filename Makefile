@@ -27,9 +27,8 @@ prepare:
 
 download:
 	mkdir -p models
-	source .venv/bin/activate && \
-	HF_ENDPOINT=https://hf-mirror.com \
-	hf download --local-dir ./models/WestZhang/VibeVoice-Large-pt WestZhang/VibeVoice-Large-pt
+	HF_ENDPOINT=https://hf-mirror.com hf download --local-dir ./models/WestZhang/VibeVoice-Large-pt WestZhang/VibeVoice-Large-pt
+	HF_ENDPOINT=https://hf-mirror.com hf download --local-dir ./models/microsoft/VibeVoice-1.5B microsoft/VibeVoice-1.5B
 
 dev: sync-to-gpu
 	ssh -t $(REMOTE) "cd $(REMOTE_PATH) && \
