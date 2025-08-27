@@ -1,4 +1,4 @@
-.PHONY: build compile download install lzc-build lzc-install lzc-install-gpu lzc-pre-publish push sync-clean sync-from-gpu sync-to-gpu test test2 voices inspect
+.PHONY: build compile download inspect install lzc-build lzc-install lzc-install-gpu lzc-pre-publish push sync-clean sync-from-gpu sync-to-gpu test test2 voices
 
 VERSION := $(shell git rev-parse --short HEAD)
 UV := ~/.local/bin/uv
@@ -64,7 +64,16 @@ build: compile
 
 test: build
 	ssh -t $(REMOTE) "cd $(REMOTE_PATH) && \
-		docker run -it --rm --gpus all --name $(DOCKER_NAME) --network host -v ./output:/app/output $(DOCKER_REGISTRY):$(VERSION)"
+		docker run -it --rm --gpus all \
+		--name $(DOCKER_NAME) \
+		--network host \
+		-v ./output:/app/output \
+		-e HF_HUB_OFFLINE=0 \
+		-e HF_ENDPOINT=https://hf-mirror.com \
+		-e HTTP_PROXY=$(ENV_PROXY) \
+		-e HTTPS_PROXY=$(ENV_PROXY) \
+		-e NO_PROXY=$(ENV_NOPROXY) \
+		$(DOCKER_REGISTRY):$(VERSION)"
 
 inspect: build
 	ssh -t $(REMOTE) "cd $(REMOTE_PATH) && \
