@@ -49,4 +49,5 @@ COPY demo /app/demo
 
 EXPOSE 7860
 
-CMD ["python3", "demo/gradio_demo.py", "--model_path", "/app/models/WestZhang/VibeVoice-Large-pt", "--share"]
+# CMD ["python3", "demo/gradio_demo.py", "--model_path", "/app/models/WestZhang/VibeVoice-Large-pt", "--share"]
+CMD ["python3", "demo/gradio_demo.py", "--model_path", "/app/models/microsoft/VibeVoice-1.5B", "--share"]
