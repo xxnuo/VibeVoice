@@ -45,8 +45,8 @@ compile: sync-to-gpu
 		export HTTPS_PROXY=$(ENV_PROXY) && \
 		export ALL_PROXY=$(ENV_PROXY) && \
 		export NO_PROXY=$(ENV_NOPROXY) && \
-		$(UV) run py2so.py -d CosyVoice/webui && \
-		$(UV) pip compile --no-deps pyproject.toml -o requirements-pypi.txt"
+		echo $(UV) run py2so.py -d CosyVoice/webui && \
+		echo $(UV) pip compile --no-deps pyproject.toml -o requirements-pypi.txt"
 	$(MAKE) sync-from-gpu
 
 build: compile
