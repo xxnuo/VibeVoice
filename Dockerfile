@@ -33,6 +33,7 @@ ENV HF_HUB_OFFLINE=1
 
 COPY vibevoice /app/vibevoice
 COPY pyproject.toml /app/pyproject.toml
+COPY .python-version /app/.python-version
 
 RUN --mount=type=cache,target=/root/.cache/pip \
     pip3 install -e .
