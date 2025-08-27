@@ -52,6 +52,7 @@ compile: sync-to-gpu
 build: compile
 	ssh -t $(REMOTE) "cd $(REMOTE_PATH) && \
 		docker build \
+		--progress=plain \
 		-f Dockerfile \
 		-t $(DOCKER_REGISTRY):$(VERSION) \
 		-t $(DOCKER_REGISTRY):latest \
