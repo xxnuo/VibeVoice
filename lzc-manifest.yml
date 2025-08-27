@@ -1,0 +1,32 @@
+name: 文本转语音引擎 - VibeVoice
+package: cloud.lazycat.aipod.vibevoice
+version: 1.2.2
+description: 支持多种语言及声音克隆的文本转语音系统
+license: https://choosealicense.com/licenses/mit/
+homepage:
+author: x
+usage: 这个应用需要结合算力舱使用. This application needs to be used in conjunction with AI Pod.
+locales:
+  zh:
+    name: "文本转语音引擎(VibeVoice)"
+    description: "支持多种语言及声音克隆的文本转语音系统"
+    usage: 这个应用需要结合算力舱使用
+  en:
+    name: "Text to Speech Engine(VibeVoice)"
+    description: "Text to Speech System with support for multiple languages and voice cloning"
+    usage: This application needs to be used in conjunction with AI Pod
+application:
+  subdomain: vibevoice
+  routes:
+    - /=file:///lzcapp/pkg/content/
+
+  health_check:
+    test_url: http://127.0.0.1/health
+    start_period: 5m
+
+  upstreams:
+    - location: /health
+      backend: https://vibevoice-ai.{{ .S.BoxDomain }}/health
+      trim_url_suffix: /
+      use_backend_host: true
+      dump_http_headers_when_5xx: true

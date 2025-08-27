@@ -1,0 +1,30 @@
+x-logging: &default-logging
+  logging:
+    driver: "json-file"
+    options:
+      max-size: "10m"
+      max-file: "3"
+      compress: "true"
+
+services:
+  app:
+    <<: *default-logging
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.${LZC_SERVICE_ID}-vibevoice.rule=Host(`vibevoice-ai`)"
+    image: registry.lazycat.cloud/x/lzc-aipod-vibevoice:f9395980
+    volumes:
+      - ${LZC_AGENT_DATA_DIR}/output:/app/output
+      - /run/jtop.sock:/run/jtop.sock
+    env_file:
+      - .env
+    expose:
+      - 3000
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:3000/health" ]
+      start_period: 5s
+  
+networks:
+  default:
+    external: true
+    name: traefik-shared-network
